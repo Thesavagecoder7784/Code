@@ -1,0 +1,102 @@
+import java.util.*;
+public class Encrypt
+{
+    String arr[];
+    String encrypted[];
+    int n;
+    int count;
+    void accept()
+    {
+        Scanner sc = new Scanner(System.in);
+        String s;
+        count=0;
+        System.out.print("n=");
+        n = sc.nextInt();
+        sc.nextLine();
+        if(n< 1 || n >9)
+            System.out.println("\nINVALID ENTRY:");
+        else
+        {
+            arr = new String[n];
+            encrypted = new String[n];
+            System.out.println("\nEnter sentences terminated with full stop");
+            for(int x=0;x< n;x++)
+            {            
+                s=sc.nextLine().trim();
+                if(s.charAt(s.length()-1)!='.')
+                {
+                    System.out.println("\nSentence must terminate with a Full stop. Enter again.");
+                    continue;
+                }
+                else
+                    arr[x]=s;
+            }
+            encryptedtion();
+        }
+    }
+    void encryptedtion()
+    {
+        for(int x=0;x< n;x++)
+        {
+            if(x%2==0)
+                encryptedt(arr[x]);
+            else
+                reverse(arr[x]);
+        }
+    }
+    void encryptedt(String s)
+    {
+        char ch;
+        String temp="";
+        int len=s.length();
+        for(int x=0;x< len;x++)
+        {
+            ch=s.charAt(x);
+            if((ch>=65 && ch<=90)||(ch>=97 && ch<=122))
+            {
+                ch=(char)(ch+2);
+                if(ch>90 && ch<97)
+                {
+                    ch=(char)((64+ch-90));
+                }
+                else if(ch>122)
+                {
+                    ch=(char)((96+ch-122));
+                }
+            }
+            temp=temp+ch;
+        }
+        encrypted[count]=temp;
+        count++;
+    }
+    void reverse(String s)
+    {
+        int x;
+        String s1, word="";
+        s=s.substring(0,s.length()-1);
+        while(true)
+        {
+            x=s.lastIndexOf(" ");
+            if(x<0)
+                break;
+            s1=s.substring(x).trim();
+            word+=s1+"  ";
+            s=s.substring(0,x).trim();
+        }//EndWhile
+        word+=s;
+        encrypted[count]=word;
+        count++;
+    }
+    void display()
+        {
+        System.out.println("\nOutput:");
+            for(int x=0;x<count;x++)
+                System.out.println(encrypted[x]);
+        }
+    public static void main(String args[])
+    {
+        Encrypt obj=new Encrypt();
+        obj.accept();
+        obj.display();
+    }
+}
