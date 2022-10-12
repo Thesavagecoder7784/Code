@@ -1,0 +1,103 @@
+class LinkedList
+{
+	Node start;
+	class Node
+	{
+		int data;
+		Node next;
+		Node(int d) {data = d; next = null; }
+	}
+	public void push(int new_data)
+	{
+		Node new_node = new Node(new_data);
+                new_node.next = start;
+		start = new_node;
+	}
+	public void insertAfter(Node prev_node, int new_data)
+	{
+		if (prev_node == null)
+		{
+			System.out.println("The given previous node cannot be null");
+			return;
+		}
+		Node new_node = new Node(new_data);
+		new_node.next = prev_node.next;
+		prev_node.next = new_node;
+	}
+	
+	public void append(int new_data)
+	{
+		Node new_node = new Node(new_data);
+		if (start == null)
+		{
+			start = new Node(new_data);
+			return;
+		}
+		new_node.next = null;
+		Node last = start;
+		while (last.next != null)
+			last = last.next;
+		last.next = new_node;
+		return;
+	}
+
+	public void printList()
+	{
+		Node tnode = start;
+		while (tnode != null)
+		{
+			System.out.print(tnode.data+" ");
+			tnode = tnode.next;
+		}
+	}
+	void deleteNode(int position)
+        {
+            if (start == null)
+                return;
+            Node temp = start;
+            if (position == 0) 
+            {
+                start = temp.next;
+                return;
+            }
+            for (int i = 0; temp != null && i < position - 1;i++)
+            {
+                temp = temp.next;
+            }
+            if (temp == null || temp.next == null)
+                return;
+            Node next = temp.next.next;
+            temp.next = next;
+        }
+         public int countNodes() 
+         {    
+            int count = 0;    
+            Node current = start;    
+                
+            while(current != null) 
+            {      
+                count++;    
+                current = current.next;    
+            }    
+            return count;    
+        }    
+	public static void main(String[] args)
+	{
+		LinkedList llist = new LinkedList();
+		llist.append(6);
+		llist.push(7);
+		llist.push(1);
+		llist.append(4);
+		llist.insertAfter(llist.start.next, 8);
+
+		System.out.println("\nCreated Linked list is: ");
+		llist.printList();
+		
+		System.out.println("After deletion");
+		llist.deleteNode(2);
+		llist.printList();
+		
+		System.out.println("Number");
+		System.out.print(llist.countNodes());
+	}
+}
