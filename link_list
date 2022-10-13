@@ -1,0 +1,142 @@
+public class link_list
+{
+    Node start;
+    link_list()
+    {
+        start=null;
+    }
+    
+    public boolean isEmpty(Node s)
+    {
+        if(s==null)
+             return true;
+        else
+             return false;
+    }
+    
+    public void insertFirst(int data, Node s)
+    {
+        Node new_node=new Node();
+        new_node.data=data;
+        if(isEmpty(s))
+            new_node.next=null;
+        else
+            new_node.next=start;
+        start=new_node;
+    }
+    public void insertEnd(int data, Node s)
+    {
+        Node new_node=new Node();
+        new_node.data=data;
+        Node P=s;
+        if(start==null)
+        {
+            start=new_node;
+        }
+        else
+        {
+        while(P.next!=null)
+         P=P.next;
+        P.next=new_node;
+        }
+        new_node.next=null;
+    }
+    public void count(Node s)
+    {
+        int x=1;
+        Node P=s;
+        while(P.next!=null)
+        {
+            P=P.next;
+            x++;
+        }
+        System.out.println("No. of nodes: "+x);
+    }
+    public void display(Node s)
+    {
+        Node P=s;
+        while(P.next!=null)
+        {
+            System.out.println(P.data);
+            P=P.next;
+        }
+        System.out.println(P.data);
+    }
+    public void insert_mid(Node s, int Pos, int data)
+    {
+        Node new_node=new Node();
+        new_node.data=data;
+        int c=1;
+        Node Prev=s;
+        Node Curr=s;
+        while(c<Pos)
+        {
+            Prev=Curr;
+            Curr=Curr.next;
+            c++;
+        }
+        Prev.next=new_node;
+        new_node.next=Curr;
+    }
+    public void del(Node s, int Pos)
+    {
+        int c=1;
+        Node Prev=s;
+        Node Curr=s;
+        if(Pos==1)
+        {
+            start=start.next;
+        }
+        else
+        {
+        while(c<Pos)
+        {
+            Prev=Curr;
+            Curr=Curr.next;
+            c++;
+        }
+        Prev.next=Curr.next;
+        }
+    }
+    public boolean search(int dat,Node s)
+    {
+        int c=0;
+        Node P=s;
+        while(P!=null)
+        {
+            c++;
+            if(P.data==dat)
+            {
+              System.out.println("Data found at node "+c);
+              return true;
+            }
+            else
+             P=P.next;
+        }
+        System.out.println("Data not found");
+        return false;
+    }
+    public void modify(int dat,Node s,int pos)
+    {
+        int c=1;
+        Node P=s;
+        while(c<pos)
+         {
+             P=P.next;
+             c++;
+            }
+        P.data=dat;
+    }
+    public void sumnode(Node s)
+    {
+        int sum=0;
+        Node P=s;
+        while(P!=null)
+        {
+            if(P.data%2==0)
+             sum=sum+P.data;
+            P=P.next;
+        }
+        System.out.println("Sum of even integers: "+sum);
+    }
+}
