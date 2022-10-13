@@ -1,0 +1,80 @@
+import java.util.*;
+class NodeMain
+{
+    public static void main()
+    {
+        Scanner sc = new Scanner(System.in);
+        link_list list = new link_list();
+        boolean cond=true;
+        do
+        {
+        System.out.println("Choose. \n 1.Add start \n 2.Add end \n 3.Count \n 4.Display \n 5.Add middle \n 6.Delete \n 7.Search \n 8.Modify \n 9.Sum of even nos. \n 10.Exit");
+        int x=sc.nextInt();
+        switch(x)
+        {
+            case 1:
+            {
+                System.out.println("Enter data to add.");
+                int m=sc.nextInt();
+                list.insertFirst(m,list.start);
+                break;
+            }
+            case 2:
+            {
+                System.out.println("Enter data to add.");
+                int m=sc.nextInt();
+                list.insertEnd(m,list.start);
+                break;
+            }
+            case 3:
+            {
+                list.count(list.start);
+                break;
+            }
+            case 4:
+            {
+                list.display(list.start);
+                break;
+            }
+            case 5:
+            {
+                System.out.println("Enter data to add and position.");
+                int m=sc.nextInt();
+                int n=sc.nextInt();
+                list.insert_mid(list.start,n,m);
+                break;
+            }
+            case 6:
+            {
+                System.out.println("Enter node to delete.");
+                int m=sc.nextInt();
+                list.del(list.start,m);
+                break;
+            }
+            case 7:
+              {
+                System.out.println("Enter data to search.");
+                int m=sc.nextInt();
+                list.search(m,list.start);
+                break;
+            }
+            case 8:
+            {
+                System.out.println("Enter data to search and position.");
+                int m=sc.nextInt();
+                int n=sc.nextInt();
+                list.modify(m,list.start,n);
+                break;
+            }
+            case 9:
+            {
+                list.sumnode(list.start);
+            }
+            case 10:
+            {
+                cond=false;
+            }
+        }
+        }while(cond==true);
+    }
+}
