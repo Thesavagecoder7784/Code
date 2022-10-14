@@ -1,0 +1,51 @@
+max=arr[0][0];
+min=arr[0][0];
+maxr=0;
+minr=0;
+maxc=0;
+minc=0;
+for(i=0;i<m;i++)
+{
+for(j=0;j<n;j++)
+{
+if(arr[i][j]>max)
+{
+max=arr[i][j];
+maxr=i;
+maxc=j;
+}
+else if(arr[i][j]< min)
+{
+minr=i;
+minc=j;
+min=arr[i][j];
+}
+}
+}
+
+System.out.println(“\nMaximum Value=”+max);
+System.out.println(“\nRow=”+maxr);
+System.out.println(“\nColumn=”+maxc);
+System.out.println(“\nMinimum Value=”+min);
+System.out.println(“\nRow=”+minr);
+System.out.println(“\nColumn=”+minc);
+
+for(g=0;g<m;g++)
+{
+for(h=0;h<n;h++)
+{
+for(i=0;i<m;i++)
+{
+for(j=0;j<n;j++)
+{
+if(arr[g][h]< arr[i][j])
+{
+min=arr[g][h];
+arr[g][h]=arr[i][j];
+arr[i][j]=min;
+}
+}
+}
+}
+}
+
